@@ -97,7 +97,8 @@ export default function CreateQuiz() {
               <input
                 {...register('title')}
                 type="text"
-                className="w-full px-4 py-3 bg-mux-putty border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-mux-orange focus:border-transparent text-white placeholder-gray-500 transition-all duration-200"
+                className="w-full px-4 py-3 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 transition-all duration-200"
+                style={{ backgroundColor: 'var(--mux-putty)' }}
                 placeholder="Enter an engaging quiz title..."
               />
               {errors.title && (
@@ -117,7 +118,8 @@ export default function CreateQuiz() {
               <textarea
                 {...register('description')}
                 rows={3}
-                className="w-full px-4 py-3 bg-mux-putty border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-mux-orange focus:border-transparent text-white placeholder-gray-500 transition-all duration-200 resize-none"
+                className="w-full px-4 py-3 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 transition-all duration-200 resize-none"
+                style={{ backgroundColor: 'var(--mux-putty)' }}
                 placeholder="Describe what this quiz is about (optional)..."
               />
             </div>
@@ -129,7 +131,7 @@ export default function CreateQuiz() {
               <button
                 type="button"
                 onClick={addQuestion}
-                className="bg-mux-gradient text-white px-6 py-3 rounded-lg hover:scale-105 transition-all duration-200 font-medium neon-glow flex items-center space-x-2"
+                className="mux-gradient text-white px-6 py-3 rounded-lg hover:scale-105 transition-all duration-200 font-medium neon-glow flex items-center space-x-2"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -142,7 +144,7 @@ export default function CreateQuiz() {
               <div key={field.id} className="glass-card p-6 mb-6 animate-slide-up" style={{ animationDelay: `${index * 100}ms` }}>
                 <div className="flex justify-between items-start mb-6">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-mux-gradient rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-8 h-8 mux-gradient rounded-lg flex items-center justify-center text-white font-bold text-sm">
                       {index + 1}
                     </div>
                     <h3 className="text-lg font-medium text-white">Question {index + 1}</h3>
@@ -168,7 +170,8 @@ export default function CreateQuiz() {
                     <input
                       {...register(`questions.${index}.text`)}
                       type="text"
-                      className="w-full px-4 py-3 bg-mux-light-putty border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-mux-pink focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
+                      className="w-full px-4 py-3 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
+                      style={{ backgroundColor: 'var(--mux-light-putty)' }}
                       placeholder="What would you like to ask?"
                     />
                     {errors.questions?.[index]?.text && (
@@ -187,11 +190,12 @@ export default function CreateQuiz() {
                     </label>
                     <select
                       {...register(`questions.${index}.type`)}
-                      className="w-full px-4 py-3 bg-mux-light-putty border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-mux-pink focus:border-transparent text-white transition-all duration-200"
+                      className="w-full px-4 py-3 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-white transition-all duration-200"
+                      style={{ backgroundColor: 'var(--mux-light-putty)' }}
                     >
-                      <option value={QuestionType.BOOLEAN} className="bg-mux-putty">True/False</option>
-                      <option value={QuestionType.INPUT} className="bg-mux-putty">Short Answer</option>
-                      <option value={QuestionType.CHECKBOX} className="bg-mux-putty">Multiple Choice</option>
+                      <option value={QuestionType.BOOLEAN}>True/False</option>
+                      <option value={QuestionType.INPUT}>Short Answer</option>
+                      <option value={QuestionType.CHECKBOX}>Multiple Choice</option>
                     </select>
                   </div>
 
@@ -207,7 +211,12 @@ export default function CreateQuiz() {
             ))}
 
             {errors.questions && (
-              <p className="text-red-600 text-sm">{errors.questions.message}</p>
+              <p className="text-red-400 text-sm mt-4 flex items-center space-x-1">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{errors.questions.message}</span>
+              </p>
             )}
           </div>
 
@@ -222,7 +231,7 @@ export default function CreateQuiz() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-3 bg-mux-gradient text-white rounded-lg hover:scale-105 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold neon-glow flex items-center space-x-2"
+              className="px-8 py-3 mux-gradient text-white rounded-lg hover:scale-105 focus:outline-none transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold neon-glow flex items-center space-x-2"
             >
               {isSubmitting ? (
                 <>
@@ -274,7 +283,7 @@ function CheckboxOptions({
   };
 
   return (
-    <div className="bg-mux-charcoal/50 p-4 rounded-lg border border-white/5">
+    <div className="p-4 rounded-lg border border-white/5" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)' }}>
       <label className="text-sm font-medium text-gray-300 mb-4 flex items-center space-x-2">
         <svg className="w-4 h-4 text-mux-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -284,12 +293,13 @@ function CheckboxOptions({
       <div className="space-y-3">
         {options.map((option: string, optionIndex: number) => (
           <div key={optionIndex} className="flex items-center space-x-3 group">
-            <div className="w-2 h-2 bg-mux-pink rounded-full flex-shrink-0"></div>
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: 'var(--mux-pink)' }}></div>
             <input
               type="text"
               value={option}
               readOnly
-              className="flex-1 px-3 py-2 bg-mux-light-putty border border-white/10 rounded-md text-white text-sm"
+              className="flex-1 px-3 py-2 border border-white/10 rounded-md text-white text-sm"
+              style={{ backgroundColor: 'var(--mux-light-putty)' }}
             />
             <button
               type="button"
@@ -310,12 +320,16 @@ function CheckboxOptions({
             onChange={(e) => setNewOption(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addOption())}
             placeholder="Type new option..."
-            className="flex-1 px-3 py-2 bg-mux-light-putty border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-mux-cyan focus:border-transparent text-white placeholder-gray-500 text-sm transition-all duration-200"
+            className="flex-1 px-3 py-2 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-500 text-sm transition-all duration-200"
+            style={{ backgroundColor: 'var(--mux-light-putty)' }}
           />
           <button
             type="button"
             onClick={addOption}
-            className="bg-mux-cyan text-white px-4 py-2 rounded-md hover:bg-mux-cyan/80 transition-colors duration-200 text-sm font-medium"
+            className="text-white px-4 py-2 rounded-md transition-colors duration-200 text-sm font-medium"
+            style={{ backgroundColor: 'var(--mux-cyan)' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(6, 182, 212, 0.8)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--mux-cyan)'}
           >
             Add
           </button>

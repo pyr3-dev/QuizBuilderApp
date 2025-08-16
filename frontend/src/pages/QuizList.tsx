@@ -52,8 +52,8 @@ export default function QuizList() {
     return (
       <div className="flex flex-col justify-center items-center h-64 animate-fade-in">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-mux-putty rounded-full animate-spin"></div>
-          <div className="absolute top-0 left-0 w-16 h-16 border-4 border-transparent border-t-mux-orange rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 rounded-full animate-spin" style={{ borderColor: 'var(--mux-putty)' }}></div>
+          <div className="absolute top-0 left-0 w-16 h-16 border-4 border-transparent rounded-full animate-spin" style={{ borderTopColor: 'var(--mux-orange)' }}></div>
         </div>
         <p className="mt-4 text-gray-400 font-mono text-sm">Loading quizzes...</p>
       </div>
@@ -72,7 +72,7 @@ export default function QuizList() {
           <div className="text-red-400 mb-6 font-medium">{error}</div>
           <button
             onClick={fetchQuizzes}
-            className="bg-mux-gradient text-white px-6 py-3 rounded-lg hover:scale-105 transition-transform duration-200 font-medium neon-glow"
+            className="mux-gradient text-white px-6 py-3 rounded-lg hover:scale-105 transition-transform duration-200 font-medium neon-glow"
           >
             Try Again
           </button>
@@ -94,7 +94,7 @@ export default function QuizList() {
         </div>
         <Link
           to="/create"
-          className="group bg-mux-gradient text-white px-8 py-4 rounded-xl hover:scale-105 transition-all duration-200 font-semibold neon-glow flex items-center space-x-2 w-fit"
+          className="group mux-gradient text-white px-8 py-4 rounded-xl hover:scale-105 transition-all duration-200 font-semibold neon-glow flex items-center space-x-2 w-fit"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -106,7 +106,7 @@ export default function QuizList() {
       {quizzes.length === 0 ? (
         <div className="text-center py-20 animate-slide-up">
           <div className="glass-card p-12 max-w-lg mx-auto">
-            <div className="w-24 h-24 bg-mux-gradient opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 mux-gradient opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
@@ -115,7 +115,7 @@ export default function QuizList() {
             <p className="text-gray-400 mb-8">Start building your first interactive quiz and share it with the world.</p>
             <Link
               to="/create"
-              className="bg-mux-gradient text-white px-8 py-3 rounded-lg hover:scale-105 transition-transform duration-200 font-medium neon-glow inline-flex items-center space-x-2"
+              className="mux-gradient text-white px-8 py-3 rounded-lg hover:scale-105 transition-transform duration-200 font-medium neon-glow inline-flex items-center space-x-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -154,8 +154,8 @@ export default function QuizList() {
               )}
               
               <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
-                <span className="flex items-center space-x-2 bg-mux-putty px-3 py-1 rounded-full">
-                  <svg className="w-4 h-4 text-mux-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="flex items-center space-x-2 px-3 py-1 rounded-full" style={{ backgroundColor: 'var(--mux-putty)' }}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--mux-orange)' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-gray-300 font-mono">
@@ -169,7 +169,16 @@ export default function QuizList() {
               
               <Link
                 to={`/quizzes/${quiz.id}`}
-                className="block w-full text-center bg-white/5 text-white py-3 px-4 rounded-lg hover:bg-mux-gradient transition-all duration-200 font-medium border border-white/10 hover:border-transparent hover:neon-glow"
+                className="group block w-full text-center bg-white/5 text-white py-3 px-4 rounded-lg transition-all duration-200 font-medium border border-white/10 hover:border-transparent hover:neon-glow"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, var(--mux-orange) 0%, var(--mux-pink) 50%, var(--mux-purple) 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
               >
                 View Details →
               </Link>
